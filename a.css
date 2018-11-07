@@ -127,7 +127,7 @@ ul,ol{
     position: absolute;
     left: 4px;
     top: 100%;/*距离上边框100%距离*/
-    position: 
+
 }
 
 .usercard .picture{
@@ -161,7 +161,7 @@ ul,ol{
     color: #9da0a7;
 }
 .usercard > footer.media{
-    background:green;/*#e6686a*/ 
+    background:#e6686a;
     text-align: center;
 }
 .usercard > footer.media > a{
