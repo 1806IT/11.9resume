@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>我的个人简历</title>
+  <link rel="stylesheet" href=./a.css> <script src="//at.alicdn.com/t/font_877827_miktvbrx74.js">
+  </script>
+  <style type="text/css">
+    .icon {
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top-nav-bar ">
+    <div class="top-nav-bar-inner clearfix">
+      <a class="logo" href="#" alt="logo" ;style="float: left" ;>
+        <span class="rs">RS</span><span class="card">card</span>
+      </a>
+      <nav style="float: right" ;>
+        <ul class="clearfix">
+          <li>
+            <a href="#">关于</a>
+          </li>
+          <li>
+            <a href="#">技能</a>
+          </li>
+          <li>
+            <a href="#">作品集</a>
+          </li>
+          <li>
+            <a href="#">博客</a>
+          </li>
+          <li>
+            <a href="#">日历</a>
+          </li>
+          <li>
+            <a href="#">联系方式</a>
+          </li>
+          <li>
+            <a href="#">其他</a>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="banner">
+    <div class="mask"></div>
+  </div>
+  <main>
+    <div class="usercard">
+      <div class="picutre-and-text clearfix">
+        <div class="picture">
+          <img src="./img/sanjing.jpg" width=299 height=347 alt="头像">
+        </div>
+        <div class="text">
+          <span class="welcome">Hello
+            <span class="triangle"></span>
+          </span>
+          <h1>朱智聪</h1>
+          <p>前端开发工程师</p>
+          <hr>
+          <dl>
+            <dt>年龄</dt>
+            <dd>32</dd>
+            <dt>所在城市</dt>
+            <dd>湖南湘潭</dd>
+            <dt>邮箱</dt>
+            <dd>370531378@qq.com</dd>
+            <dt>手机</dt>
+            <dd>13607328704</dd>
+          </dl>
+        </div>
+      </div>
+      <footer class="media">
+        <a href="#">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-zhihu-circle-fill"></use>
+          </svg>
+        </a>
+        <a href="#">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-github"></use>
+          </svg>
+        </a>
+        <a href="#">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-qq"></use>
+          </svg>
+        </a>
+        <a href="#">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-weibo"></use>
+          </svg>
+        </a>
+        <a href="#">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-weixin"></use>
+          </svg>
+        </a>
+        <a href="#">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-wangyi"></use>
+          </svg>
+      </footer>
+    </div>
+    </div>
+    <p class="downloadresume-wrapper" ;>
+      <a class="downloadresume" href="./2.pdf" target="_blank" download>下载 PDF 简历</a>
+    </p>
+    <p class="selfintroduction">
+      前端开发，rails开发，Node.js开发
+    </p>
+  </main>
+  <section class="skills">
+    <h2>技能</h2>
+    <ol class="clearfix">
+      <li>
+        <h3>
+          HTML 5 & CSS 3
+        </h3>
+        <div class="progressbar">
+          <div class="progress"></div>
+        </div>
+      </li>
+      <li>
+        <h3>
+          Jascript
+        </h3>
+        <div class="progressbar">
+          <div class="progress"></div>
+        </div>
+      </li>
+      <li>
+        <h3>
+          Vue
+        </h3>
+        <div class="progressbar">
+          <div class="progress"></div>
+        </div>
+      </li>
+      <li>
+        <h3>
+          jQuery
+        </h3>
+        <div class="progressbar">
+          <div class="progress"></div>
+        </div>
+      </li>
+      <li>
+        <h3>
+          REACT
+        </h3>
+        <div class="progressbar">
+          <div class="progress"></div>
+        </div>
+      </li>
+      <li>
+        <h3>
+          PS
+        </h3>
+        <div class="progressbar">
+          <div class="progress"></div>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section class="portfolio">
+    <h2>作品集</h2>
+    <nav>
+      <ol class="clearfix">
+        <li id="portfolio1">所有</li>
+        <li id="portfolio2">框架</li>
+        <li id="portfolio3">原生&ampCSS</li>
+      </ol>
+      <div id="portfolioBar" class="bar state-1">
+        <div class="bar-inner"></div>
+      </div>
+    </nav>
+    <script>
+      portfolio1.onclick = function () {
+        portfolioBar.className = 'bar state-1'
+      }
+      portfolio2.onclick = function () {
+        portfolioBar.className = 'bar state-2'
+      }
+      portfolio3.onclick = function () {
+        portfolioBar.className = 'bar state-3'
+      }
+    </script>
+    <div class="works">
+      <div class="big" style="top: 0; left: 0;">
+        <img src="./img/1.jpg" width=606 height=597 alt="作品1">
+      </div>
+      <div class="small" style="top: 0; left: 658px;">
+        <img src="./img/2.jpg" width=280 height=280 alt="作品2">
+      </div>
+      <div class="small" style="top: 317px; left: 658px;">
+        <img src="./img/3.jpg" width=280 height=280 alt="作品3">
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
