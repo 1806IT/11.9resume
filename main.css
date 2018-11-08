@@ -1,3 +1,9 @@
+    .site-welcome{
+      display: none;
+    }/*时间到了就让它消失*/
+    .site-welcome.active{ display:flex; justify-content:center; background:grey;z-index: 1;position: fixed;top: 0;left: 0;width: 100%;
+        height: 100%;align-items: center;}
+
 body{background-color: #efefef;color: black;margin: 0;}
 .icon {width: 1em; height: 1em;vertical-align: -0.15em;fill: currentColor;overflow: hidden;}
 a{color: inherit;text-decoration: none;}
