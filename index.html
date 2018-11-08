@@ -25,25 +25,34 @@
   </div>
 
 
-  <div class="top-nav-bar ">
+  <div id="topNavBar" class="top-nav-bar">
     <div class="top-nav-bar-inner clearfix">
       <a class="logo" href="#" alt="logo" ;style="float: left" ;>
         <span class="rs">RS</span><span class="card">card</span>
       </a>
-      <nav style="float: right" ;>
+      <nav class="menu" style="float: right" ;>
         <ul class="clearfix">
           <li>
-            <a href="#">关于</a>
+            <a href="#siteAbout">关于</a>
           </li>
           <li>
-            <a href="#">技能</a>
+            <a href="#siteSkills">技能</a>
           </li>
-          <li>
-            <a href="#">作品集</a>
+          <li class="menuTigger">
+            <a href="#siteWorks">作品集</a>
+            <ul class="submenu">
+              <li>作品1</li>
+              <li>作品2</li>
+              <li>作品3</li>
+            </ul>
           </li>
-          <li>
+          <li class="menuTigger">
             <a href="#">博客</a>
-          </li>
+            <ul class="submenu">
+              <li>博客1</li>
+              <li>博客2</li>
+              <li>博客3</li>
+          </ul>
           <li>
             <a href="#">日历</a>
           </li>
@@ -52,6 +61,7 @@
           </li>
           <li>
             <a href="#">其他</a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -60,7 +70,7 @@
     <div class="mask"></div>
   </div>
   <main>
-    <div class="usercard">
+    <div id="siteAbout" class="usercard">
       <div class="picutre-and-text clearfix">
         <div class="picture">
           <img src="./img/sanjing.jpg" width=299 height=347 alt="头像">
@@ -124,7 +134,7 @@
       前端开发，rails开发，Node.js开发
     </p>
   </main>
-  <section class="skills">
+  <section id="siteSkills" class="skills">
     <h2>技能</h2>
     <ol class="clearfix">
       <li>
@@ -177,7 +187,7 @@
       </li>
     </ol>
   </section>
-  <section class="portfolio">
+  <section id="siteWorks" class="portfolio">
     <h2>作品集</h2>
     <nav>
       <ol class="clearfix">
@@ -216,7 +226,76 @@
   <script>
     setTimeout(function(){
       siteWeclome.classList.remove('active')
-    },1000)
+    },500)
+    window.onscroll=function(x){   //滚动⌚️
+      //console.log(window.scrollY)//获取用户滚动高度
+      if(window.scrollY > 0){
+        topNavBar.classList.add('sticky')
+      }else{
+        topNavBar.classList.remove('sticky')
+      }
+    }
+    /*let liTags = document.getElementsByClassName('menuTigger')
+    console.log(liTags)
+    for(let i =0; i<liTags.length; i++){
+      liTags[i].onmouseenter = function(x){//监听鼠标进入
+        console.log('mouseenter')
+        console.log(x.currentTarget)//currentTrget代表用户监听的元素，尽量不去liTags[i]取值，有bug，完成后测试，因为用户操作的可能是父元素里面的子元素，onclick是用户操作的元素
+        let li = x.currentTarget
+        let brother = li.nextSibling
+        /*while(brother.nodeType === 3){
+          brother = borther.nextSibling
+        }//去查mnd nodeType掌握其相关属性和值，Node.TEXT_NODE的值是3，两者等价*/
+        /*while(brother.tagName!=='UL'){//一定要用大写的UL，效果和上面一样，tagName的返回值是大写的
+        //while(brother.tagName.toLowerCase()!=='ul'){//将其标签名换成小写，浏览器用的是大写，不改就找不到，不能这么改，老师纠错，如果要找的是文本节点，因为文本节点的tagName是undefined，
+          brother = brother.nextSibling
+        }
+        console.log(brother)//着a标签的节点弟弟,之前脱节了
+        brother.classList.add('active')
+      }
+      liTags[i].onmouseleave = function (x) {//监听鼠标离开
+        let li = x.currentTarget
+        let brother = li.nextSibling
+        while (brother.tagName !== 'UL') {
+          brother = brother.nextSibling
+        }
+        brother.classList.remove('active')
+      }
+    }*///等下用var试试看有什么bug，别的都是用var来遍历数组的*/
+    //重来
+    //let liTags =document.getElementsByClassName('menuTigger') 自己倒是觉得这个可以保留
+    let liTags = document.querySelectorAll('nav.menu > ul >li')//可以选择相匹配的所有li
+    for(let i=0;i<liTags.length;i++){
+      liTags[i].onmouseenter = function(x){
+        x.currentTarget.classList.add('active')//正式修改前为 let li =x.currentTarget.classList
+        //let brother = li.getElementsByTagName('ul')[0]
+        //brother.classList.add('active')
+      }
+      liTags[i].onmouseleave = function(x){
+        let li = x.currentTarget
+        x.currentTarget.classList.remove('active')//正式修改前为let brother = li.getElementsByTagName('ul')[0]
+        //brother.classList.remove('active')
+      }
+    }
+    let aTags = document.querySelectorAll('nav.menu > ul > li >a')
+      //console.log(aTags)
+      for(let i=0; i<aTags.length;i++){
+        aTags[i].onclick = function(x){
+          x.preventDefault()//阻止默认动作，本例是阻止a标签的自动跳转
+          console.log('you clicked')
+          console.log(x.currentTarget)//显示点击标签信息
+          let a = x.currentTarget
+          //console.log(a.getAttribute('href'))//带http协议，用户写什么就是什么，浏览器不做任何修改的输出
+          let href = a.getAttribute('href')
+          let element = document.querySelector(href)//已上述获取字符串获取目标
+          //let rect = element.getBoundingClientRect()//去查MDN
+          console.log(element.offsetTop)//获取这个元素距离最顶端的距离
+          let top = element.offsetTop
+          window.scrollTo(0,top-80)//查MDN，左右不变，窗口跳到距离顶部top-80px的位置
+        }
+      }
+    
+
     
   </script>
 </body>
