@@ -68,7 +68,7 @@
     <div class="mask"></div>
   </div>
   <main>
-    <div id="siteAbout" class="usercard">
+    <div data-x id="siteAbout" class="usercard">
       <div class="picutre-and-text clearfix">
         <div class="picture">
           <img src="./img/sanjing.jpg" width=299 height=347 alt="头像">
@@ -132,7 +132,7 @@
       前端开发，rails开发，Node.js开发
     </p>
   </main>
-  <section id="siteSkills" class="skills">
+  <section data-x id="siteSkills" class="skills">
     <h2>技能</h2>
     <ol class="clearfix">
       <li>
@@ -185,7 +185,7 @@
       </li>
     </ol>
   </section>
-  <section id="siteWorks" class="portfolio">
+  <section data-x id="siteWorks" class="portfolio">
     <h2>作品集</h2>
     <nav>
       <ol class="clearfix">
@@ -224,7 +224,17 @@
   <script>
     setTimeout(function () {
       siteWeclome.classList.remove('active')
-    }, 500)
+    }, 100)
+    let specialTags = document.querySelectorAll('[data-x]')
+   
+    for (let i = 0; i < specialTags.length; i++) {
+      specialTags[i].classList.add('offSet')
+       
+    }
+    setTimeout(function () {
+    findclosest()
+    },300)
+
     window.onscroll = function (x) {   //滚动⌚️
       //console.log(window.scrollY)//获取用户滚动高度
       if (window.scrollY > 0) {
@@ -232,11 +242,52 @@
       } else {
         topNavBar.classList.remove('sticky')
       }
+      
+      findclosest()
     }
+
+    function findclosest() {
+      let specialTags = document.querySelectorAll('[data-x]')//前面加了div就是获取含data-x标记的div，所以别加div
+      let minIndex = 0
+      for (let i = 1; i < specialTags.length; i++) {
+        if (Math.abs(specialTags[i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop - window.scrollY)) {
+          minIndex = i
+        }
+        //specialTags[minIndex离窗口顶部最近的元素]
+        specialTags[minIndex].classList.remove('offSet')   
+        console.log(minIndex)    
+      }
+
+      for (let i = 0; i < specialTags.length; i++) {
+        specialTags[i].classList.remove('hightLight')
+      }
+      //console.log('min-s')
+      //console.log(specialTags[minIndex].offsetTop, minIndex)
+      specialTags[minIndex].classList.add('hightLight')
+      let id = specialTags[minIndex].id//得到当前画面标签的id
+      let a = document.querySelector('a[href="#' + id + '"]')//返过去找当前对应画面a标签
+      let li = a.parentNode//继续回头找a标签对应其父元素，因为下划线是标记在其父元素上
+      let brotherAndMe = li.parentNode.children
+      for (let i = 0; i < brotherAndMe.length; i++) {
+        brotherAndMe[i].classList.remove('hightLight')
+      }
+      //将其父元素下所有子元素的active去掉
+      li.classList.add('hightLight')//将需要active的元素加上
+
+    }
+
+    //   }
+    /*这部分是为了获取做了data-x标记标签的位置
+      for(let i=0;i<specialTags.length;i++){
+      console.log('specialTags[i].offsetTop')
+      console.log(specialTags[i].offsetTop)
+      }
+    */
+
     /*let liTags = document.getElementsByClassName('menuTigger')
     console.log(liTags)
     for(let i =0; i<liTags.length; i++){
-      liTags[i].onmouseenter = function(x){//监听鼠标进入
+    liTags[i].onmouseenter = function(x){//监听鼠标进入
         console.log('mouseenter')
         console.log(x.currentTarget)//currentTrget代表用户监听的元素，尽量不去liTags[i]取值，有bug，完成后测试，因为用户操作的可能是父元素里面的子元素，onclick是用户操作的元素
         let li = x.currentTarget
@@ -261,6 +312,12 @@
   }
 }*///等下用var试试看有什么bug，别的都是用var来遍历数组的*/
     //重来
+
+
+
+
+
+
     //let liTags =document.getElementsByClassName('menuTigger') 自己倒是觉得这个可以保留
     let liTags = document.querySelectorAll('nav.menu > ul >li')//可以选择相匹配的所有li
     for (let i = 0; i < liTags.length; i++) {
@@ -292,23 +349,23 @@
         let element = document.querySelector(href)
         let top = element.offsetTop
         //let top = document.querySelector(x.currentTarget.getAttribute('href')).offsetTop//这句代码等价于上面四句
-        let currentTop = window.scrollY      
-        let targetTop = top - 60
-        let s = targetTop - currentTop  
-        var coords = { y: currentTop }; // Start at (0)
-        var t =Math.abs((s / 100) * 300) 
-        if(t>1000){
-          t=1000
+        let currentTop = window.scrollY
+        let targetTop = top - 80
+        let s = targetTop - currentTop  //路程
+        var coords = { y: currentTop }; // 起始位置
+        var t = Math.abs((s / 100) * 300) //时间
+        if (t > 1000) {
+          t = 1000
         }
-        var tween = new TWEEN.Tween(coords)
-          .to({ y: targetTop },t)
-          .easing(TWEEN.Easing.Quadratic.InOut)
+        var tween = new TWEEN.Tween(coords)//起始位置
+          .to({ y: targetTop }, t)//结束位置和时间
+          .easing(TWEEN.Easing.Quadratic.InOut)//缓动类型
           .onUpdate(function () {
             console.log(coords.y)
-            window.scrollTo(0, coords.y)
+            window.scrollTo(0, coords.y)//如何更新界面
           })
-          .start();   
-        console.log((s / 100) * 100)     
+          .start();   //开始缓动
+        console.log((s / 100) * 100)
         //console.log('you clicked')
         //console.log(x.currentTarget)//显示点击标签信息
         //let a = x.currentTarget
