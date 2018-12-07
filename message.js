@@ -55,10 +55,10 @@
             })  
         },
         bindEvents: function(){
-            this.myForm.addEventListener('submit', function (e) {
+            this.myForm.addEventListener('submit', (e)=> {
                 e.preventDefault()
                 this.saveMessage()
-            }.bind(that))
+            })
         },
         saveMessage:function(){
             let myForm = this.myForm
