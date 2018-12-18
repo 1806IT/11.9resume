@@ -1,7 +1,7 @@
+
 !(function(){
-    var view=document.querySelector('section.message');
-    var that =this;
-    var model={
+    let view=document.querySelector('section.message');
+    let model={
         //获取数据
         init: function () {
             var APP_ID = '9FkLrAn2scR5DPXiEJ8fFLiI-gzGzoHsz';
@@ -9,6 +9,7 @@
 
             AV.init({ appId: APP_ID, appKey: APP_KEY });
         },
+        
         fetch:function(){
             var query = new AV.Query('Message');
             return query.find()//返回promise对象
@@ -25,7 +26,7 @@
         }
     }
 
-    var controller={
+    let controller={
         view:null,
         model:null,
         messageList:null,
@@ -70,10 +71,7 @@
                 let messageList = document.querySelector('#messageList')
                 messageList.appendChild(li)
                 myForm.querySelector('input[name=content]').value = ''
-                /*alert('提交成功!');
-                console.log('存入成功')
-                console.log(object)
-                window.location.reload()*/
+
             })            
         }
     };
@@ -84,18 +82,3 @@
 
 
 
-
-
-/*
-//创建testobject表
-var TestObject = AV.Object.extend('TestObject');
-//在表中创建一行数据
-var testObject = new TestObject();
-//数据内容是：words: 'Hello World!',b保存
-//如果保存成功则运行alert('LeanCloud Rocks!')
-testObject.save({
-    words: 'Hello World!'
-}).then(function (object) {
-    alert('LeanCloud Rocks!');
-})
-*/
